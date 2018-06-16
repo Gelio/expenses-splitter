@@ -12,11 +12,9 @@ module.exports = function argumentsParserFactory() {
         });
       }
     )
-    .boolean(['t'])
-    .describe(
-      't',
-      'Skip displaying the list of products and only display the total'
-    )
+    .boolean(['d'])
+    .describe('d', 'Display detailed information on each person')
+    .alias('d', ['details', 'display-details'])
     .demandOption(['names', 'buyer-column-name', 'price-column-name'])
     .option('names', {
       array: true,
@@ -38,6 +36,5 @@ module.exports = function argumentsParserFactory() {
       type: 'string',
       describe: 'The name of the column with the name of the purchased product'
     })
-    .alias('t', 'total-only')
     .help();
 };

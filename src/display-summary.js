@@ -1,13 +1,12 @@
 const { table } = require('table');
-const numeral = require('numeral');
 
+const formatPrice = require('./format-price');
 const Person = require('./person');
 
 /**
- * @param {boolean} totalOnly
  * @param {Map<string, Person>} people
  */
-module.exports = function displaySummary(totalOnly, people) {
+module.exports = function displaySummary(people) {
   const peopleArray = Array.from(people.values());
   const summary = peopleArray.map(person => {
     const totalExpenses = person.getTotalExpenses();
@@ -31,14 +30,4 @@ module.exports = function displaySummary(totalOnly, people) {
   ];
 
   console.log(table([header, ...summary]));
-
-  if (!totalOnly) {
-    // TODO: display more information per person
-  }
 };
-
-const priceFormat = '0.00';
-
-function formatPrice(price) {
-  return numeral(price).format(priceFormat);
-}
